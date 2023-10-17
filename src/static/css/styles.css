@@ -4,8 +4,9 @@ body {
     font-family: 'Lato';
 }
 
-.welcome {
-    text-align: center;
+#welcome {
+    padding-left: 50px;
+    padding-bottom: 15px;
 }
 
 .item {
