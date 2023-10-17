@@ -5,8 +5,7 @@ body {
 }
 
 .welcome {
-    padding-left: 15px;
-    padding-bottom: 15px;
+    text-align: center;
 }
 
 .item {
