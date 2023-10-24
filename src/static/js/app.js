@@ -67,13 +67,11 @@ function TodoListCard() {
     );
 }
 
-// Adds a priority to each -to-do (not yet implemented server-side)
 function AddItemForm({ onNewItem }) {
     const { Form, InputGroup, Button } = ReactBootstrap;
 
     // Change here
     const [newItem, setNewItem] = React.useState('');
-    const [newPriority, setPriority] = React.useState('low'); // Initial priority
     const [submitting, setSubmitting] = React.useState(false);
 
     const submitNewItem = e => {
@@ -83,7 +81,6 @@ function AddItemForm({ onNewItem }) {
             method: 'POST',
             body: JSON.stringify({
                 name: newItem,
-                priority: newPriority
             }),
             headers: { 'Content-Type': 'application/json' },
         })
@@ -92,7 +89,6 @@ function AddItemForm({ onNewItem }) {
                 onNewItem(item);
                 setSubmitting(false);
                 setNewItem('');
-                setPriority('');
             });
     };
 
@@ -106,11 +102,6 @@ function AddItemForm({ onNewItem }) {
                     placeholder="New Item"
                     aria-describedby="basic-addon1"
                 />
-                <Form.Control as="select" value={newPriority} onChange={e => setPriority(e.target.value)}>
-                    <option value="high">High</option>
-                    <option value="medium">Medium</option>
-                    <option value="low">Low</option>
-                </Form.Control>
                 <InputGroup.Append>
                     <Button
                         type="submit"
@@ -126,7 +117,6 @@ function AddItemForm({ onNewItem }) {
     );
 }
 
-// Adds a priority to each -to-do (not yet implemented server-side)
 function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
     const { Container, Row, Col, Button } = ReactBootstrap;
 
@@ -136,7 +126,6 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
             body: JSON.stringify({
                 name: item.name,
                 completed: !item.completed,
-                priority: item.priority, // Preserve the priority
             }),
             headers: { 'Content-Type': 'application/json' },
         })
@@ -173,7 +162,7 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
                     </Button>
                 </Col>
                 <Col xs={9} className="name">
-                    {item.name} | Priority: {item.priority}
+                    {item.name}
                 </Col>
                 <Col xs={1} className="text-center remove">
                     <Button
