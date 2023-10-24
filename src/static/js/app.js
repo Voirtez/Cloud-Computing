@@ -79,7 +79,10 @@ function AddItemForm({ onNewItem }) {
         setSubmitting(true);
         fetch('/items', {
             method: 'POST',
-            body: JSON.stringify({ name: newItem, priority: newPriority }),
+            body: JSON.stringify({
+                name: newItem,
+                priority: newPriority // Change here
+            }),
             headers: { 'Content-Type': 'application/json' },
         })
             .then(r => r.json())
@@ -87,7 +90,7 @@ function AddItemForm({ onNewItem }) {
                 onNewItem(item);
                 setSubmitting(false);
                 setNewItem('');
-                setPriority('');
+                setPriority(''); // Change here
             });
     };
 
@@ -102,7 +105,7 @@ function AddItemForm({ onNewItem }) {
                     aria-describedby="basic-addon1"
                 />
                 // Change here
-                <Form.Control as="select" value=(newPriority) onChange={e => setPriority(e.target.value)}>
+                <Form.Control as="select" value={newPriority} onChange={e => setPriority(e.target.value)}>
                         <option value="high">High</option>
                         <option value="medium">Medium</option>
                         <option value="low">Low</option>
