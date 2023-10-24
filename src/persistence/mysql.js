@@ -92,8 +92,8 @@ async function getItem(id) {
 async function storeItem(item) {
     return new Promise((acc, rej) => {
         pool.query(
-            'INSERT INTO todo_items (id, name, completed) VALUES (?, ?, ?)',
-            [item.id, item.name, item.completed ? 1 : 0],
+            'INSERT INTO todo_items (id, name, priority, completed) VALUES (?, ?, ?, ?)',
+            [item.id, item.name, item.priority, item.completed ? 1 : 0],
             err => {
                 if (err) return rej(err);
                 acc();
@@ -105,8 +105,8 @@ async function storeItem(item) {
 async function updateItem(id, item) {
     return new Promise((acc, rej) => {
         pool.query(
-            'UPDATE todo_items SET name=?, completed=? WHERE id=?',
-            [item.name, item.completed ? 1 : 0, id],
+            'UPDATE todo_items SET name=?, priority=?, completed=? WHERE id=?',
+            [item.name, item.priority, item.completed ? 1 : 0, id],
             err => {
                 if (err) return rej(err);
                 acc();
