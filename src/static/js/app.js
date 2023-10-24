@@ -4,6 +4,15 @@ function App() {
         <Container>
             <Row>
                 <Col md={{ offset: 3, span: 6 }}>
+                    <h1>ToDo Listings</h1>
+                    <p>
+                        Welcome to ToDo Listings. Here's what you can do with it:
+                        <ul>
+                            <li>Add items into a list</li>
+                            <li>Set a due date to complete them</li>
+                            <li>Mark items being completed or remove them</li>
+                        </ul>
+                    </p>
                     <TodoListCard />
                 </Col>
             </Row>
@@ -53,7 +62,7 @@ function TodoListCard() {
         <React.Fragment>
             <AddItemForm onNewItem={onNewItem} />
             {items.length === 0 && (
-                <p className="text-center">You have nothing on your todo list! Add an item above above!</p>
+                <p className="text-center">You have no to-do items yet! Add one above!</p>
             )}
             {items.map(item => (
                 <ItemDisplay
@@ -67,11 +76,13 @@ function TodoListCard() {
     );
 }
 
+// Adds a priority to each -to-do (not yet implemented server-side)
 function AddItemForm({ onNewItem }) {
     const { Form, InputGroup, Button } = ReactBootstrap;
 
+    // Change here
     const [newItem, setNewItem] = React.useState('');
-    const [newPriority, setPriority] = React.useState('low'); // Change here
+    const [newPriority, setPriority] = React.useState('low'); // Initial priority
     const [submitting, setSubmitting] = React.useState(false);
 
     const submitNewItem = e => {
@@ -81,7 +92,7 @@ function AddItemForm({ onNewItem }) {
             method: 'POST',
             body: JSON.stringify({
                 name: newItem,
-                priority: newPriority // Change here
+                priority: newPriority
             }),
             headers: { 'Content-Type': 'application/json' },
         })
@@ -105,9 +116,9 @@ function AddItemForm({ onNewItem }) {
                     aria-describedby="basic-addon1"
                 />
                 <Form.Control as="select" value={newPriority} onChange={e => setPriority(e.target.value)}>
-                        <option value="high">High</option>
-                        <option value="medium">Medium</option>
-                        <option value="low">Low</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
                 </Form.Control>
                 <InputGroup.Append>
                     <Button
@@ -124,6 +135,7 @@ function AddItemForm({ onNewItem }) {
     );
 }
 
+// Adds a priority to each -to-do (not yet implemented server-side)
 function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
     const { Container, Row, Col, Button } = ReactBootstrap;
 
@@ -133,7 +145,7 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
             body: JSON.stringify({
                 name: item.name,
                 completed: !item.completed,
-                priority: item.priority,
+                priority: item.priority, // Preserve the priority
             }),
             headers: { 'Content-Type': 'application/json' },
         })
