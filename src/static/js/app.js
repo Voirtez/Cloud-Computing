@@ -71,7 +71,7 @@ function AddItemForm({ onNewItem }) {
     const { Form, InputGroup, Button } = ReactBootstrap;
 
     const [newItem, setNewItem] = React.useState('');
-    const [newPriority, setPriority] = Reacr.useState('low'); // Change here
+    const [newPriority, setPriority] = React.useState('low'); // Change here
     const [submitting, setSubmitting] = React.useState(false);
 
     const submitNewItem = e => {
