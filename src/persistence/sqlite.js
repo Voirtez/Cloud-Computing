@@ -18,8 +18,8 @@ function init() {
                 console.log(`Using sqlite database at ${location}`);
 
             db.run(
-                'CREATE TABLE IF NOT EXISTS todo_items (id varchar(36), name varchar(255), priority varchar(36), completed boolean)', // Change here
-                (err, result) => { 
+                'CREATE TABLE IF NOT EXISTS todo_items (id varchar(36), name varchar(255), priority varchar(36), completed boolean)', // Change this
+                (err, result) => {
                     if (err) return rej(err);
                     acc();
                 },
@@ -70,8 +70,8 @@ async function getItem(id) {
 async function storeItem(item) {
     return new Promise((acc, rej) => {
         db.run(
-            'INSERT INTO todo_items (id, name, priority, completed) VALUES (?, ?, ?, ?)', // Change here
-            [item.id, item.name, item.priority, item.completed ? 1 : 0], // Change here
+            'INSERT INTO todo_items (id, name, priority, completed) VALUES (?, ?, ?, ?)', // Change this
+            [item.id, item.name, item.priority, item.completed ? 1 : 0], // Change this
             err => {
                 if (err) return rej(err);
                 acc();
@@ -83,8 +83,8 @@ async function storeItem(item) {
 async function updateItem(id, item) {
     return new Promise((acc, rej) => {
         db.run(
-            'UPDATE todo_items SET name=?, priority=?, completed=? WHERE id = ?', // Change here
-            [item.name, item.priority, item.completed ? 1 : 0, id], // Change here
+            'UPDATE todo_items SET name=?, priority=?, completed=? WHERE id = ?', // Change this
+            [item.name, item.priority, item.completed ? 1 : 0, id], // Change this
             err => {
                 if (err) return rej(err);
                 acc();
