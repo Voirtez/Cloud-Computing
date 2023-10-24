@@ -39,7 +39,7 @@ async function init() {
 
     return new Promise((acc, rej) => {
         pool.query(
-            'CREATE TABLE IF NOT EXISTS todo_items (id varchar(36), name varchar(255), priority varchar(50) completed boolean) DEFAULT CHARSET utf8mb4', // Change here
+            'CREATE TABLE IF NOT EXISTS todo_items (id varchar(36), name varchar(255), priority varchar(50), completed boolean) DEFAULT CHARSET utf8mb4', // Change here
             err => {
                 if (err) return rej(err);
 
