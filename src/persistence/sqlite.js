@@ -18,7 +18,7 @@ function init() {
                 console.log(`Using sqlite database at ${location}`);
 
             db.run(
-                'CREATE TABLE IF NOT EXISTS todo_items (id varchar(36), name varchar(255), completed boolean)', // Change here
+                'CREATE TABLE IF NOT EXISTS todo_items (id varchar(36), name varchar(255), priority varchar(50), completed boolean)', // Change here
                 (err, result) => { 
                     if (err) return rej(err);
                     acc();
