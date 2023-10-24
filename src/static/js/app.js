@@ -104,7 +104,6 @@ function AddItemForm({ onNewItem }) {
                     placeholder="New Item"
                     aria-describedby="basic-addon1"
                 />
-                // Change here
                 <Form.Control as="select" value={newPriority} onChange={e => setPriority(e.target.value)}>
                         <option value="high">High</option>
                         <option value="medium">Medium</option>
