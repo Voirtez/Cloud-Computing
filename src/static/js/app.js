@@ -162,7 +162,7 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
                     </Button>
                 </Col>
                 <Col xs={9} className="name">
-                    {item.name}
+                    {item.name} | {item.id}
                 </Col>
                 <Col xs={1} className="text-center remove">
                     <Button
