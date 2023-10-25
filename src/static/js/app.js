@@ -154,6 +154,7 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
                                 ? 'Mark item as incomplete'
                                 : 'Mark item as complete'
                         }
+                        readOnly
                     >
                         <i
                             className={`far ${
@@ -171,6 +172,7 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
                         variant="link"
                         onClick={removeItem}
                         aria-label="Remove Item"
+                        readOnly
                     >
                         <i className="fa fa-trash text-danger" />
                     </Button>
